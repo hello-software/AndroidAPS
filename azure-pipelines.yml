@@ -19,6 +19,16 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
 
+- task: AndroidSigning@2
+  inputs:
+    apkFiles: '**/*.apk'
+    jarsign: true
+    jarsignerKeystoreFile: '$(keyStoreFile.android-aps.keystore)'
+    jarsignerKeystorePassword: '$(keystorePassword)'
+    jarsignerKeystoreAlias: 'example'
+    jarsignerKeyPassword: '$(keystorePassword)'
+    zipalign: true
+
 - task: CopyFiles@2
   inputs:
     contents: '**/*.apk'
